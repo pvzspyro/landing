@@ -24,7 +24,8 @@ const sanitizeHref = (href) => {
 };
 
 const parseInline = (text, keyPrefix, inlineCodeClassName, linkClassName) => {
-  const inlinePattern = /(\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`)/g;
+  const inlinePattern =
+    /(\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`|\*\*([^*]+)\*\*|\*([^*]+)\*)/g;
   const parts = [];
   let lastIndex = 0;
   let inlineIndex = 0;
@@ -44,7 +45,7 @@ const parseInline = (text, keyPrefix, inlineCodeClassName, linkClassName) => {
           {match[4]}
         </code>
       );
-    } else {
+    } else if (match[2]) {
       const safeHref = sanitizeHref(match[3]);
       if (!safeHref) {
         parts.push(match[2]);
@@ -62,6 +63,24 @@ const parseInline = (text, keyPrefix, inlineCodeClassName, linkClassName) => {
         >
           {match[2]}
         </a>
+      );
+    } else if (match[5]) {
+      parts.push(
+        <strong
+          key={`${keyPrefix}-strong-${inlineIndex}`}
+          style={{ fontWeight: 700, fontSynthesis: "weight" }}
+        >
+          {match[5]}
+        </strong>
+      );
+    } else if (match[6]) {
+      parts.push(
+        <em
+          key={`${keyPrefix}-em-${inlineIndex}`}
+          style={{ fontStyle: "italic", fontSynthesis: "style" }}
+        >
+          {match[6]}
+        </em>
       );
     }
 
@@ -156,6 +175,22 @@ export default function MarkdownRenderer({
       continue;
     }
 
+    if (line.trim() === "---") {
+      blocks.push(
+        <hr
+          key={`divider-${key}`}
+          style={{
+            borderTop: "1px solid currentColor",
+            opacity: 0.4,
+            margin: "24px 0"
+          }}
+        />
+      );
+      index += 1;
+      key += 1;
+      continue;
+    }
+
     if (line.startsWith("- ")) {
       const items = [];
       while (index < lines.length && lines[index].startsWith("- ")) {
@@ -189,7 +224,11 @@ export default function MarkdownRenderer({
       index += 1;
     }
     blocks.push(
-      <p key={`paragraph-${key}`} className={paragraph}>
+      <p
+        key={`paragraph-${key}`}
+        className={paragraph}
+        style={{ textAlign: "justify" }}
+      >
         {parseInline(
           paragraphLines.join(" "),
           `paragraph-${key}`,

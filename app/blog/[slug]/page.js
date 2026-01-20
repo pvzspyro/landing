@@ -91,7 +91,11 @@ export default function PostPage({ params }) {
             />
           ) : post.body ? (
             post.body.map((paragraph, paragraphIndex) => (
-              <p key={`fallback-${paragraphIndex}`} className={paragraphClassName}>
+              <p
+                key={`fallback-${paragraphIndex}`}
+                className={paragraphClassName}
+                style={{ textAlign: "justify" }}
+              >
                 {paragraph}
               </p>
             ))
