@@ -1,4 +1,8 @@
-const portraitSrc = "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png";
+import { withBasePath } from "../../lib/paths";
+
+const portraitSrc = withBasePath(
+  "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png"
+);
 const portraitAlt = "41353cc3-6c9f-4d36-a22b-80189f131fcc";
 
 export default function StructuredData({ profile }) {

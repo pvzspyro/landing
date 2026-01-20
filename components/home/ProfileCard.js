@@ -1,3 +1,5 @@
+import { withBasePath } from "../../lib/paths";
+
 const profileCardClassName =
   "_4131pw _78zum5 _k50ysn _1of4z1n _1o0tod _1tj1r3y _10l6tqk _1n327nk";
 const portraitWrapClassName = "_x20hqb _7giv3 _1y5e3q9 _nqh3do _1qj20 _1n2onr6 _87ps6o";
@@ -7,7 +9,9 @@ const nameClassName = "_nqh3do _1rg5ohu _11w5x4 _te3ayu _iksgxq _eq5yr9";
 const locationRowClassName = "_1dfy8wd _6s0dn4 _78zum5 _1ehd6gj";
 const locationIconWrapClassName = "_1a2a7pz _k2swo9 _t0e3qv";
 
-const portraitSrc = "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png";
+const portraitSrc = withBasePath(
+  "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png"
+);
 const portraitAlt = "41353cc3-6c9f-4d36-a22b-80189f131fcc";
 
 export default function ProfileCard({ profile }) {

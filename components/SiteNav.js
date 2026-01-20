@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withBasePath } from "../lib/paths";
 
 const navClassName =
   "_lttcdf _czphqh _6s0dn4 _145ct6e _1m75h50 _1f6x5sh _78zum5 _1vqtf37 _6esm2n _1a11q2q _dgco2l _1huwfqn _s0hnhe _jat59b _1wj9ous _lbgzzq _14g40p9 _agqw05 _kh2ocl _7wzq59";
@@ -27,6 +28,7 @@ export default function SiteNav({ withViewTransitions = false }) {
       }
     : {};
 
+  const logoSrc = withBasePath("/images/oregano.png");
   return (
     <nav
       className={navClassName}
@@ -42,7 +44,7 @@ export default function SiteNav({ withViewTransitions = false }) {
         <Link href="/" aria-label="Home" className={logoClassName}>
           <img
             className={logoImageClassName}
-            src="/images/oregano.png"
+            src={logoSrc}
             alt="Oregano"
             decoding="async"
           />

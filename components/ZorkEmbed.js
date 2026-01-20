@@ -1,7 +1,11 @@
+import { withBasePath } from "../lib/paths";
+
 export default function ZorkEmbed({
   logoSrc = "/images/zork_sketchy_mono.png",
   minHeight = 640
 }) {
+  const resolvedLogoSrc = withBasePath(logoSrc);
+  const frameSrc = withBasePath("/visizork/index-game.html");
   return (
     <div
       style={{
@@ -12,7 +16,7 @@ export default function ZorkEmbed({
       }}
     >
       <img
-        src={logoSrc}
+        src={resolvedLogoSrc}
         alt="Zork"
         style={{
           width: "260px",
@@ -27,7 +31,7 @@ export default function ZorkEmbed({
       >
         <div className="crt-screen" style={{ height: "100%" }}>
           <iframe
-            src="/visizork/index-game.html"
+            src={frameSrc}
             title="Zork 1"
             className="zork-iframe"
             style={{
