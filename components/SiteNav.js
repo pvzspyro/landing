@@ -28,7 +28,16 @@ export default function SiteNav({ withViewTransitions = false }) {
     : {};
 
   return (
-    <nav className={navClassName}>
+    <nav
+      className={navClassName}
+      style={{
+        background: "transparent",
+        backgroundColor: "transparent",
+        backdropFilter: "none",
+        WebkitBackdropFilter: "none",
+        boxShadow: "none"
+      }}
+    >
       <span aria-label="Home" className={logoClassName} {...logoProps}>
         <Link href="/" aria-label="Home" className={logoClassName}>
           <img

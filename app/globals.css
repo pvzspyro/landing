@@ -93,3 +93,10 @@ code, kbd, pre, samp{
     margin-inline: auto;
   }
 }
+
+@media (max-width: 640px) {
+  .zork-iframe {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}

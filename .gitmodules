@@ -1,0 +1,3 @@
+[submodule "public/visizork"]
+	path = public/visizork
+	url = https://github.com/erkyrath/visizork.git
