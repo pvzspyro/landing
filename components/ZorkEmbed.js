@@ -40,6 +40,8 @@ export default function ZorkEmbed({
               display: "block"
             }}
             allow="fullscreen"
+            sandbox="allow-scripts"
+            referrerPolicy="no-referrer"
           />
         </div>
         <div className="crt-glow" aria-hidden="true" />
@@ -56,7 +58,7 @@ export default function ZorkEmbed({
         <a
           href="https://github.com/erkyrath/visizork"
           target="_blank"
-          rel="noreferrer"
+          rel="noreferrer noopener"
           style={{ textDecoration: "underline" }}
         >
           erkyrath

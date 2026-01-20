@@ -1,5 +1,28 @@
 import ZorkEmbed from "../ZorkEmbed";
 
+const allowedProtocols = new Set(["http:", "https:", "mailto:", "tel:"]);
+
+const isRelativeHref = (href) =>
+  href.startsWith("/") ||
+  href.startsWith("./") ||
+  href.startsWith("../") ||
+  href.startsWith("#");
+
+const sanitizeHref = (href) => {
+  const trimmed = href?.trim();
+  if (!trimmed) return null;
+  if (isRelativeHref(trimmed)) return trimmed;
+
+  try {
+    const url = new URL(trimmed);
+    if (allowedProtocols.has(url.protocol)) return trimmed;
+  } catch (error) {
+    return null;
+  }
+
+  return null;
+};
+
 const parseInline = (text, keyPrefix, inlineCodeClassName, linkClassName) => {
   const inlinePattern = /(\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`)/g;
   const parts = [];
@@ -22,13 +45,20 @@ const parseInline = (text, keyPrefix, inlineCodeClassName, linkClassName) => {
         </code>
       );
     } else {
+      const safeHref = sanitizeHref(match[3]);
+      if (!safeHref) {
+        parts.push(match[2]);
+        inlineIndex += 1;
+        lastIndex = matchIndex + match[0].length;
+        continue;
+      }
       parts.push(
         <a
           key={`${keyPrefix}-link-${inlineIndex}`}
-          href={match[3]}
+          href={safeHref}
           className={linkClassName}
           target="_blank"
-          rel="noreferrer"
+          rel="noreferrer noopener"
         >
           {match[2]}
         </a>
