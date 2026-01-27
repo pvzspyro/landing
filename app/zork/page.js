@@ -1,9 +1,35 @@
 import SiteNav from "../../components/SiteNav";
 import ZorkEmbed from "../../components/ZorkEmbed";
 
+const zorkDescription = "Play Zork right in the browser.";
+const ogImage = "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png";
+
 export const metadata = {
   title: "Zork | Oregano Flakes",
-  description: "Play Zork right in the browser."
+  description: zorkDescription,
+  alternates: {
+    canonical: "/zork"
+  },
+  openGraph: {
+    title: "Zork | Oregano Flakes",
+    description: zorkDescription,
+    url: "/zork",
+    type: "website",
+    images: [
+      {
+        url: ogImage,
+        width: 1600,
+        height: 2000,
+        alt: "Portrait of Oregano Flakes"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zork | Oregano Flakes",
+    description: zorkDescription,
+    images: [ogImage]
+  }
 };
 
 const mainClassName = "_78zum5 _1iyjqo2 _pjyfc _ygnhl5";

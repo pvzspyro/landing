@@ -3,9 +3,35 @@ import Link from "next/link";
 import SiteNav from "../../components/SiteNav";
 import formatPostDate from "../../components/blog/formatPostDate";
 
+const blogDescription = "Oregano Flakes personal blog";
+const ogImage = "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png";
+
 export const metadata = {
   title: "Blog | Oregano Flakes",
-  description: "Oregano Flakes personal blog"
+  description: blogDescription,
+  alternates: {
+    canonical: "/blog"
+  },
+  openGraph: {
+    title: "Blog | Oregano Flakes",
+    description: blogDescription,
+    url: "/blog",
+    type: "website",
+    images: [
+      {
+        url: ogImage,
+        width: 1600,
+        height: 2000,
+        alt: "Portrait of Oregano Flakes"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Oregano Flakes",
+    description: blogDescription,
+    images: [ogImage]
+  }
 };
 
 const listContainerClassName =

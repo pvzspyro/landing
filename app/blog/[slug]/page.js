@@ -19,6 +19,8 @@ const codeBlockClassName =
   "_1m1lls2 _1uz70x1 _1j6x5gx _w2csxc _4w1nh8 _1dcheo9 _1evy7pa _1lv5wty";
 const inlineCodeClassName = "_4w1nh8 _1dcheo9";
 const linkClassName = "_1bvjpef";
+const ogImage = "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png";
+const ogImageAlt = "Portrait of Oregano Flakes";
 
 const markdownDir = path.join(process.cwd(), "data", "posts");
 
@@ -32,6 +34,55 @@ const loadMarkdown = (slug) => {
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
+}
+
+export function generateMetadata({ params }) {
+  const post = posts.find((item) => item.slug === params.slug);
+
+  if (!post) {
+    return {
+      title: "Post not found | Oregano Flakes",
+      robots: {
+        index: false,
+        follow: false
+      }
+    };
+  }
+
+  const description =
+    post.description?.trim() || post.body?.[0] || "Blog post on Oregano Flakes.";
+  const url = `/blog/${post.slug}`;
+  const publishedTime = `${post.date}T00:00:00.000Z`;
+
+  return {
+    title: post.title,
+    description,
+    alternates: {
+      canonical: url
+    },
+    openGraph: {
+      title: post.title,
+      description,
+      url,
+      type: "article",
+      publishedTime,
+      authors: ["Oregano Flakes"],
+      images: [
+        {
+          url: ogImage,
+          width: 1600,
+          height: 2000,
+          alt: ogImageAlt
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: [ogImage]
+    }
+  };
 }
 
 export default function PostPage({ params }) {

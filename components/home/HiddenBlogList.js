@@ -21,7 +21,7 @@ export default function HiddenBlogList({ postsByYear }) {
   }
 
   return (
-    <section className={listContainerClassName} style={{ display: "none" }}>
+    <section className={`${listContainerClassName} visually-hidden`}>
       <div className={listWrapClassName}>
         {years.map((year) => (
           <section key={year} className="_78zum5 _dt5ytf">

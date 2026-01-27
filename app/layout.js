@@ -1,9 +1,47 @@
 import "./globals.css";
 import localFont from "next/font/local";
 
+const siteUrl = "https://oreganoflakes.com";
+const defaultTitle = "Oregano Flakes";
+const defaultDescription = "Oregano Flakes personal website";
+const ogImage = "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png";
+const ogImageAlt = "Portrait of Oregano Flakes";
+
 export const metadata = {
-  title: "Oregano Flakes",
-  description: "Oregano Flakes personal website"
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: "%s | Oregano Flakes"
+  },
+  description: defaultDescription,
+  openGraph: {
+    title: defaultTitle,
+    description: defaultDescription,
+    url: "/",
+    siteName: defaultTitle,
+    type: "website",
+    images: [
+      {
+        url: ogImage,
+        width: 1600,
+        height: 2000,
+        alt: ogImageAlt
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [ogImage]
+  },
+  icons: {
+    icon: [
+      { url: "/icon.png" },
+      { url: "/favicon.ico", type: "image/x-icon" }
+    ],
+    apple: "/apple-touch-icon.png"
+  }
 };
 
 const vt323 = localFont({

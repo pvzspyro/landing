@@ -3,7 +3,7 @@ import { withBasePath } from "../../lib/paths";
 const portraitSrc = withBasePath(
   "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png"
 );
-const portraitAlt = "41353cc3-6c9f-4d36-a22b-80189f131fcc";
+const portraitAlt = "Portrait of Oregano Flakes";
 
 export default function StructuredData({ profile }) {
   const primaryLink = profile.links[0]?.href ?? "";

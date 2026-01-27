@@ -12,7 +12,7 @@ const locationIconWrapClassName = "_1a2a7pz _k2swo9 _t0e3qv";
 const portraitSrc = withBasePath(
   "/images/41353cc3-6c9f-4d36-a22b-80189f131fcc.png"
 );
-const portraitAlt = "41353cc3-6c9f-4d36-a22b-80189f131fcc";
+const portraitAlt = "Portrait of Oregano Flakes";
 
 export default function ProfileCard({ profile }) {
   const location = profile.locations?.[0] ?? { name: "" };
