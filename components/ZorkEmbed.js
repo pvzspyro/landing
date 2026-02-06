@@ -44,7 +44,7 @@ export default function ZorkEmbed({
               display: "block"
             }}
             allow="fullscreen"
-            sandbox="allow-scripts"
+            sandbox="allow-scripts allow-same-origin allow-forms"
             referrerPolicy="no-referrer"
           />
         </div>
